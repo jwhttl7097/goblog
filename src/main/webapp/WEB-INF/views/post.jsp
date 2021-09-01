@@ -86,11 +86,11 @@ a.button:hover {
 
 </style>
 
-	<script>
-	function pageProc(currentPage, searchItem, searchKeyword) {
-		location.href="<c:url value='postlist' />" +"?currentPage=" + currentPage + "&searchItem=" + searchItem + "&searchKeyword=" + searchKeyword;
-	}
-	</script>
+<script>
+function pageProc(currentPage, searchItem, searchKeyword) {
+	location.href="<c:url value='postlist' />" +"?currentPage=" + currentPage + "&searchItem=" + searchItem + "&searchKeyword=" + searchKeyword;
+}
+</script>
 
 <c:choose>
 	<c:when test="${requestScope.writeResult == true}">
@@ -136,14 +136,13 @@ a.button:hover {
 </script>
 
 <!-- 댓글창 삭제-->
-	<script type="text/javascript">
-
-		function replyDelete(replynum) {
-			if(confirm("댓글을 삭제하시겠습니까?")) {
-				location.href="<c:url value='hitReplyDelete?replynum="+ replynum +"&post_no=${vo.post_no}' />";
-			}
+<script type="text/javascript">
+	function replyDelete(replynum) {
+		if(confirm("댓글을 삭제하시겠습니까?")) {
+			location.href="<c:url value='hitReplyDelete?replynum="+ replynum +"&post_no=${vo.post_no}' />";
 		}
-	</script>
+	}
+</script>
 
 <script type="text/javascript">
 /* 좋아요 */
