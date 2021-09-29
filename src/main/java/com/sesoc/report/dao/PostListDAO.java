@@ -190,22 +190,20 @@ public class PostListDAO {
 		}
 	}
 	
-	  //게시판 댓글 목록
-	  public ArrayList<ReplyVO> replyList(int post_no) {
-	  ArrayList<ReplyVO> replyList = null; 
-	  try { 
-		  ReplyMapper mapper = sqlsession.getMapper(ReplyMapper.class);
-		  replyList = mapper.replyList(post_no); 
-	  }
-	  catch (Exception e) 
-	  { 
-		  e.printStackTrace(); 
-	  }
-	  return replyList; 
-	  }
-	  
+	//게시판 댓글 목록
+	public ArrayList<ReplyVO> replyList(int post_no) {
+		ArrayList<ReplyVO> replyList = null; 
+		try { 
+			ReplyMapper mapper = sqlsession.getMapper(ReplyMapper.class);
+			replyList = mapper.replyList(post_no); 
+		}
+		catch (Exception e) { 
+			e.printStackTrace(); 
+		}
+		return replyList; 
+	}
 	//댓글 삭제
-	  public void replyDelete(ReplyVO vo, HttpSession session) {
+	public void replyDelete(ReplyVO vo, HttpSession session) {
 		String user_id = (String)session.getAttribute("user_id");
 		vo.setUser_id(user_id);
 		try {
@@ -228,7 +226,6 @@ public class PostListDAO {
 		  return replyCnt;
 	  };
 	 
-
 	// 게시판 수정
 	public PostVO postReader(int post_no) {
 		PostVO vo = null;

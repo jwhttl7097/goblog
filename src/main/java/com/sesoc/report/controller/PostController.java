@@ -160,21 +160,18 @@ public class PostController {
 		rttr.addFlashAttribute("writeResult", result);
 		
 		int post_no = dao.getPost_no();
-		// 확인용 System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@" + post_no);
 		
 		//split은 null까지 같이 인식해버리기떄문에 사용불가 StrignTokenizer로 사용
 		StringTokenizer tokens = new StringTokenizer(tag_name, "#");
 		int countTokens = tokens.countTokens();
 		for (int i = 0; i < countTokens; i++) {
 			String token_tag_name = tokens.nextToken();
-				System.out.println("======================================" + token_tag_name);
 			TagVO tagVO = dao.checkTag(token_tag_name); 
 			if(tagVO == null) dao.insertTag(token_tag_name);
 			int tag_id = dao.checkTag(token_tag_name).getTag_id(); 
 			PostTagVO ptVO = new PostTagVO();
 			ptVO.setPost_no(post_no); 
 			ptVO.setTag_id(tag_id); 
-				System.out.println("$$$$$$$$$$$$$$$$$"+ptVO);
 			dao.insertPostTag(ptVO);
 			token_tag_name= "";
 		}
@@ -287,7 +284,7 @@ public class PostController {
 	@RequestMapping(value = "hitReplyDelete", method = RequestMethod.GET)
 	public String hitReplyDelete(ReplyVO vo, HttpSession session) {
 		dao.replyDelete(vo, session);
-		return "redirect:postlist?post_no="+vo.getPost_no();
+		return "redirect:postlist";
 	}
 	
 	  //좋아요

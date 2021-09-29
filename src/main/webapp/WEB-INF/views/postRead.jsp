@@ -179,131 +179,127 @@ function like_func(){
                 <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
                 <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
                 <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
-                	<table>
+                	<table class="table">
                 		<tr>
-                			<th colspan="3">
-                				<h2>[작성글]</h2>
-                			</th>
                 		</tr>
                 		<tr>
                 			<th>
-		                		<div class="row control-group">
-			                        <div class="form-group col-xs-12 floating-label-form-group controls">
+		                   		<div class="row control-group">
+			                        <div style="border: none;" class="form-group col-xs-12 floating-label-form-group controls">
 			                            <label>No.</label>
 			                        	<div>번호</div>
-		                            	<input type="text" id="post_no" class="form-control" value="${vo.post_no}" readonly="readonly">
-		                            	<p class="help-block text-danger"></p>
+		                            	<div id="post_no">${vo.post_no}</div>
 		                        	</div>
 		                   		</div>
                 			</th>
-                			<th>
+                			<th class="text-center">
 			                    <div class="row control-group">
-			                        <div class="form-group col-xs-12 floating-label-form-group controls">
+			                        <div style="border: none;" class="form-group col-xs-12 floating-label-form-group controls">
 			                            <label>NAME</label>
 			                            <div>작성자</div>
-			                            <input type="text" class="form-control" value="${vo.user_id}" readonly="readonly">
-			                            <p class="help-block text-danger"></p>
+			                            <div id="user_id">${vo.user_id}</div>
 			                        </div>
 			                    </div>
                 			</th>
-                			<th>
+                			<th colspan="2" class="text-right" style="border-bottom: solid rgb(221, 221, 221) 1px;">
 			                    <div class="row control-group">
-			                        <div class="form-group col-xs-12 floating-label-form-group controls">
+			                        <div style="border: none;" class="form-group col-xs-12 floating-label-form-group controls">
 			                            <label>Date</label>
 			                            <div>작성일</div>
-			                            <input type="text" class="form-control" value="${vo.inputdate}" readonly="readonly">
-			                            <p class="help-block text-danger"></p>
+			                            <div>${vo.inputdate}</div>
 			                        </div>
 			                    </div>
                 			</th>
                 		</tr>
                 		<tr>
-                			<th colspan="3">
+                			<th colspan="4" style="border-bottom: solid rgb(221, 221, 221) 1px;">
 			                    <div class="row control-group">
-			                        <div class="form-group col-xs-12 floating-label-form-group controls">
+			                        <div style="border: none;" class="form-group col-xs-12 floating-label-form-group controls">
 			                            <label>TITLE</label>
 			                            <div>제목</div>
-			                            <input type="text" class="form-control" value="${vo.title}" readonly="readonly">
-			                            <p class="help-block text-danger"></p>
+			                            <div>${vo.title}</div>
 			                        </div>
 			                    </div>
                 			</th>
                 		</tr>
                 		<tr>
-                			<th colspan="3">
+                			<th colspan="4" style="border-bottom: solid rgb(221, 221, 221) 1px;">
 			                    <div class="row control-group">
-			                        <div class="form-group col-xs-12 floating-label-form-group controls">
+			                        <div style="border: none;" class="form-group col-xs-12 floating-label-form-group controls">
 			                            <label>CONTENT</label>
 			                            <div>내용</div>
-			                            <textarea rows="10" class="form-control" readonly="readonly" >${vo.content}</textarea>
-			                            <p class="help-block text-danger"></p>
+			                            <div>${vo.content}</div>
 			                        </div>
 			                    </div>
                 			</th>
                 		</tr>
                 		<tr>
-                			<th colspan="3">
+                			<th colspan="4">
 			                    <div class="row control-group">
-			                        <div class="form-group col-xs-12 floating-label-form-group controls">
+			                        <div style="border-bottom: none;" class="form-group col-xs-12 floating-label-form-group controls" >
 			                            <label>HASHTAG</label>
-			                            <div>HASHTAG</div>
+			                            <div >HASHTAG</div>
 				                            <c:forTokens items="${tag_name}" var="tag_name" delims=",">
 					                            	<a href="<c:url value='tagSearch?tag_name=${tag_name}' />">#${tag_name}</a>
 					                        </c:forTokens>
-			                            <p class="help-block text-danger"></p>
 			                        </div>
 			                    </div>
                 			</th>
                 		</tr>
                 		<tr>
+               				<!-- 좋아요 -->
                 			<th>
-                				<!-- 좋아요 -->
-                				<div class="row control-group">
+                				<div class="control-group">
                 					<c:choose>
 					                  	<c:when test="${sessionScope.user_id != null}">
-					                  	<c:choose>
-					                  		<c:when test="${like_check == 1}">
-							                  <div><a href="javascript:like_func();"><img id="like_img" src="resources/image/like2.png" width="25" height="25" style="margin-left: 15px"></a></div>
-							                  <span style="margin-left: 23px;" id="like_cnt">${like_cnt}</span>
-					                          <p class="help-block text-danger"></p>
-					                  		</c:when>
-					                  		<c:otherwise>
-						                  		<div><a href="javascript:like_func();"><img id="like_img" src="resources/image/like1.png" width="25" height="25" style="margin-left: 15px"></a></div>
-								                <span style="margin-left: 23px;" id="like_cnt">${like_cnt}</span>
-						                        <p class="help-block text-danger"></p>
-					                  		</c:otherwise>
-					                  	</c:choose>
-						                  	</c:when>
+						                  	<c:choose>
+						                  		<c:when test="${like_check == 1}">
+								                  <div style="top: 18px; border-bottom: none;" class="form-group col-xs-12 floating-label-form-group controls">
+									                  <a href="javascript:like_func();"><img id="like_img" src="resources/image/like2.png" width="25" height="25" style="margin-left: 15px"></a>
+										              <span style="margin-left: 23px;" id="like_cnt">${like_cnt}</span>
+								                  </div>
+						                  		</c:when>
+						                  		<c:otherwise>
+							                  		<div style="top: 18px; border-bottom: none;" class="form-group col-xs-12 floating-label-form-group controls">
+								                  		<a href="javascript:like_func();"><img id="like_img" src="resources/image/like1.png" width="25" height="25" style="margin-left: 15px"></a>
+										                <span style="margin-left: 23px;" id="like_cnt">${like_cnt}</span>
+								                  	</div>
+						                  		</c:otherwise>
+					                  		</c:choose>
+					                  	</c:when>
 					                  	<c:when test="${sessionScope.user_id == null}">
-					                  		<div class="btn_like"><a><img src="resources/image/like1.png" width="25" height="25" style="margin-left: 13px" onclick="like_login()"></a></div>
-					                  		<span style="margin-left: 13px;" id="like_cnt">${like_cnt}</span>
+					                  		<div style="top: 18px; border-bottom: none;" class="form-group col-xs-12 floating-label-form-group controls btn_like">
+						                  		<a><img src="resources/image/like1.png" width="25" height="25" style="margin-left: 13px" onclick="like_login()"></a>
+						                  		<span style="margin-left: 13px;" id="like_cnt">${like_cnt}</span>
+					                  		</div>
 				                  		</c:when>
 				                  	</c:choose>
 			                    </div>
                 			</th>
-                			<td>
-                				<div class="btn_comment">
-                					<a>
-                						<img src="resources/image/comment.png" width="30" height="30">
-                					</a>
+                			<!-- 댓글창 -->
+                			<th>
+                				<div class="control-group">
+	                				<div style="top: 18px; border-bottom: none;" class="form-group col-xs-12 floating-label-form-group controls btn_comment">
+	                					<a>
+	                						<img src="resources/image/comment.png" width="30" height="30">
+	                					</a>
+										<span>${replyCnt}</span>
+									</div>
 								</div>
-								<span>[${replyCnt}]</span>
-                			</td>
+                			</th>
                 			<th>
 			                    <div class="row control-group">
-			                        <div class="form-group col-xs-12 floating-label-form-group controls">
+			                        <div style="border-bottom: none;" class="form-group col-xs-12 floating-label-form-group controls">
 			                            <label>Hit</label>
-			                            <div>조회</div>
-			                            ${vo.hit}
+			                            <div>조회 ${vo.hit}</div>
 			                        </div>
 			                    </div>
                 			</th>
-                			<th colspan="2">
+                			<th colspan="1" style="border-bottom: solid rgb(221, 221, 221) 1px;">
 			                    <div class="row control-group">
-			                        <div class="form-group col-xs-12 floating-label-form-group controls">
+			                        <div style="border-bottom: none;" class="form-group col-xs-12 floating-label-form-group controls">
 			                            <label>FILE</label>
-			                            <div>첨부파일</div>
-			                            ${vo.originalFilename}
+			                            <div>첨부파일   ${vo.originalFilename}</div>
 			                        </div>
 			                    </div>
                 			</th>
@@ -314,7 +310,7 @@ function like_func(){
 		                    <div class="row">
 		                        <div class="form-group col-xs-12">
 		                        	<c:if test="${sessionScope.user_id == vo.user_id}">
-			                            <a href="<c:url value='postUpdateForm?post_no=${vo.post_no}' />">
+			                            <a href="<c:url value='postUpdateForm?post_no=${vo.post_no}'/>">
 			                            	<button type="button" class="btn btn-default">수정</button>
 			                            </a>
 		                            	<button type="button" class="btn btn-default" onclick="postDelete()">삭제</button>
@@ -325,7 +321,7 @@ function like_func(){
                 			<th></th>
                 			<th>
 		                            <a href="postlist">
-		                            	<button type="button" style="margin-left: 66%;" class="btn btn-default">Return</button>
+		                            	<button type="button" style="margin-left: 134%;" class="btn btn-default">Return</button>
 		                            </a>
                 			</th>
                 		</tr>
@@ -367,16 +363,12 @@ function like_func(){
 										<td class="replyid">
 											<span>${reply.user_id} </span>
 										</td>
-										<td class="replydate">
+										<td colspan="2" class="replydate">
 											<span>${reply.inputdate}</span>
 										</td>
 										<c:if test="${sessionScope.user_id == reply.user_id }">
-											<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-											<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-											<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-											<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 											<td class="replybtn">
-												<input type="button" class="btn btn-outline-success" value="삭제" onclick="replyDelete('${reply.replynum}')" >
+												<input type="button" class="btn btn-outline-success" value="삭제" onclick="replyDelete('${reply.replynum}')">
 											</td>
 										</c:if>
 									</tr>

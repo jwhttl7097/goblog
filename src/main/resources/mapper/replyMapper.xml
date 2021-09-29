@@ -36,7 +36,6 @@
 			replynum = #{replynum}
 			AND user_id = #{user_id}
 	</delete>
-    
 
 	<!-- 댓글 카운트 -->
 	<select id="replyCnt" resultType="int" parameterType="int">

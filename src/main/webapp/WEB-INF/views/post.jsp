@@ -12,7 +12,8 @@
 <title>[블로그]</title>
 	<!-- Bootstrap Core CSS -->
     <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- Bootstrap Icon -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <!-- Theme CSS -->
     <link href="resources/css/clean-blog.min.css" rel="stylesheet">
 
@@ -139,7 +140,7 @@ function pageProc(currentPage, searchItem, searchKeyword) {
 <script type="text/javascript">
 	function replyDelete(replynum) {
 		if(confirm("댓글을 삭제하시겠습니까?")) {
-			location.href="<c:url value='hitReplyDelete?replynum="+ replynum +"&post_no=${vo.post_no}' />";
+			location.href="<c:url value='hitReplyDelete?replynum="+ replynum + "'/>";
 		}
 	}
 </script>
@@ -253,130 +254,128 @@ function like_func(){
                 <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
                 <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
                 <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
-                	<table>
+                	<table class="table">
                 		<tr>
-                			<th colspan="3">
-                				<h2>[인기글]</h2>
+                			<th colspan="4">
+                				<p>HITS POST</p>
                 			</th>
                 		</tr>
                 		<tr>
                 			<th>
 		                		<div class="row control-group">
-			                        <div class="form-group col-xs-12 floating-label-form-group controls">
+			                        <div style="border: none;" class="form-group col-xs-12 floating-label-form-group controls">
 			                            <label>No.</label>
 			                        	<div>번호</div>
-		                            	<input type="text" class="form-control" id="post_no" value="${hitlist.post_no}" readonly="readonly">
-		                            	<p class="help-block text-danger"></p>
+		                            	<div id="post_no">${hitlist.post_no}</div>
 		                        	</div>
 		                   		</div>
                 			</th>
-                			<th>
+                			<th class="text-center">
 			                    <div class="row control-group">
-			                        <div class="form-group col-xs-12 floating-label-form-group controls">
+			                        <div style="border: none;" class="form-group col-xs-12 floating-label-form-group controls">
 			                            <label>NAME</label>
 			                            <div>작성자</div>
-			                            <input type="text" class="form-control" id="user_id" value="${hitlist.user_id}" readonly="readonly">
-			                            <p class="help-block text-danger"></p>
+			                            <div id="user_id">${hitlist.user_id}</div>
 			                        </div>
 			                    </div>
                 			</th>
-                			<th>
+                			<th colspan="2" class="text-right">
 			                    <div class="row control-group">
-			                        <div class="form-group col-xs-12 floating-label-form-group controls">
+			                        <div style="border: none;" class="form-group col-xs-12 floating-label-form-group controls">
 			                            <label>Date</label>
 			                            <div>작성일</div>
-			                            <input type="text" class="form-control" value="${hitlist.inputdate}" readonly="readonly">
-			                            <p class="help-block text-danger"></p>
+			                            <div>${hitlist.inputdate}</div>
 			                        </div>
 			                    </div>
                 			</th>
                 		</tr>
                 		<tr>
-                			<th colspan="3">
+                			<th colspan="4">
 			                    <div class="row control-group">
-			                        <div class="form-group col-xs-12 floating-label-form-group controls">
+			                        <div style="border: none;" class="form-group col-xs-12 floating-label-form-group controls">
 			                            <label>TITLE</label>
 			                            <div>제목</div>
-			                            <input type="text" class="form-control" value="${hitlist.title}" readonly="readonly">
-			                            <p class="help-block text-danger"></p>
+			                            <div>${hitlist.title}</div>
 			                        </div>
 			                    </div>
                 			</th>
                 		</tr>
                 		<tr>
-                			<th colspan="3">
+                			<th colspan="4">
 			                    <div class="row control-group">
-			                        <div class="form-group col-xs-12 floating-label-form-group controls">
+			                        <div style="border: none;" class="form-group col-xs-12 floating-label-form-group controls">
 			                            <label>CONTENT</label>
 			                            <div>내용</div>
-			                            <textarea rows="10" class="form-control" readonly="readonly">${hitlist.content}</textarea>
-			                            <p class="help-block text-danger"></p>
+			                            <div>${hitlist.content}</div>
 			                        </div>
 			                    </div>
                 			</th>
                 		</tr>
                 		<tr>
-                			<th colspan="3">
+                			<th colspan="4">
 			                    <div class="row control-group">
-			                        <div class="form-group col-xs-12 floating-label-form-group controls">
+			                        <div style="border-bottom: none;" class="form-group col-xs-12 floating-label-form-group controls" >
 			                            <label>HASHTAG</label>
-			                            <div>HASHTAG</div>
+			                            <div >HASHTAG</div>
 				                            <c:forTokens items="${tag_name}" var="tag_name" delims=",">
 					                            	<a href="<c:url value='tagSearch?tag_name=${tag_name}' />">#${tag_name}</a>
 					                        </c:forTokens>
-			                            <p class="help-block text-danger"></p>
 			                        </div>
 			                    </div>
                 			</th>
                 		</tr>
                 		<tr>
-                			<td>
-                				<div class="row control-group">
+                			<th>
+                				<div class="control-group">
                 					<c:choose>
 					                  	<c:when test="${sessionScope.user_id != null}">
-					                  	<c:choose>
-					                  		<c:when test="${like_check == 1}">
-							                  <div><a href="javascript:like_func();"><img id="like_img" src="resources/image/like2.png" width="25" height="25" style="margin-left: 15px"></a></div>
-							                  <span style="margin-left: 23px;" id="like_cnt">${like_cnt}</span>
-					                          <p class="help-block text-danger"></p>
-					                  		</c:when>
-					                  		<c:otherwise>
-						                  		<div><a href="javascript:like_func();"><img id="like_img" src="resources/image/like1.png" width="25" height="25" style="margin-left: 15px"></a></div>
-								                <span style="margin-left: 23px;" id="like_cnt">${like_cnt}</span>
-						                        <p class="help-block text-danger"></p>
-					                  		</c:otherwise>
-					                  	</c:choose>
-						                  	</c:when>
+						                  	<c:choose>
+						                  		<c:when test="${like_check == 1}">
+								                  <div style="top: 18px; border-bottom: none;" class="form-group col-xs-12 floating-label-form-group controls">
+									                  <a href="javascript:like_func();"><img id="like_img" src="resources/image/like2.png" width="25" height="25" style="margin-left: 15px"></a>
+										              <span style="margin-left: 23px;" id="like_cnt">${like_cnt}</span>
+								                  </div>
+						                  		</c:when>
+						                  		<c:otherwise>
+							                  		<div style="top: 18px; border-bottom: none;" class="form-group col-xs-12 floating-label-form-group controls">
+								                  		<a href="javascript:like_func();"><img id="like_img" src="resources/image/like1.png" width="25" height="25" style="margin-left: 15px"></a>
+										                <span style="margin-left: 23px;" id="like_cnt">${like_cnt}</span>
+								                  	</div>
+						                  		</c:otherwise>
+					                  		</c:choose>
+					                  	</c:when>
 					                  	<c:when test="${sessionScope.user_id == null}">
-					                  		<div class="btn_like"><a><img src="resources/image/like1.png" width="25" height="25" style="margin-left: 13px" onclick="like_login()"></a></div>
-					                  		<span style="margin-left: 13px;" id="like_cnt">${like_cnt}</span>
+					                  		<div style="top: 18px; border-bottom: none;" class="form-group col-xs-12 floating-label-form-group controls btn_like">
+						                  		<a><img src="resources/image/like1.png" width="25" height="25" style="margin-left: 13px" onclick="like_login()"></a>
+						                  		<span style="margin-left: 13px;" id="like_cnt">${like_cnt}</span>
+					                  		</div>
 				                  		</c:when>
 				                  	</c:choose>
 			                    </div>
-                			</td>
-                			<td>
-                				<div class="btn_comment">
-                					<a>
-                						<img src="resources/image/comment.png" width="30" height="30">
-                					</a>
+                			</th>
+                			<th>
+                				<div class="control-group">
+	                				<div style="top: 18px; border-bottom: none;" class="form-group col-xs-12 floating-label-form-group controls btn_comment">
+	                					<a>
+	                						<img src="resources/image/comment.png" width="30" height="30">
+	                					</a>
+										<span>${replyCnt}</span>
+									</div>
 								</div>
-								<span>[${replyCnt}]</span>
-                			</td>
+                			</th>
                 			<th>
 			                    <div class="row control-group">
-			                        <div class="form-group col-xs-12 floating-label-form-group controls">
+			                        <div style="border-bottom: none;" class="form-group col-xs-12 floating-label-form-group controls">
 			                            <label>Hit</label>
-			                            <div>조회       ${hitlist.hit}</div>
-			                            <p class="help-block text-danger"></p>
+			                            <div>조회${hitlist.hit}</div>
 			                        </div>
 			                    </div>
                 			</th>
-                			<th colspan="1">
+                			<th colspan="1" style="border-bottom: solid rgb(221, 221, 221) 1px;">
 			                    <div class="row control-group">
-			                        <div class="form-group col-xs-12 floating-label-form-group controls">
+			                        <div style="border-bottom: none;" class="form-group col-xs-12 floating-label-form-group controls">
 			                            <label>FILE</label>
 			                            <div>첨부파일   ${hitlist.originalFilename}</div>
-			                            <p class="help-block text-danger"></p>
 			                        </div>
 			                    </div>
                 			</th>
@@ -398,7 +397,7 @@ function like_func(){
                 			<th></th>
                 			<th>
 		                            <a href="postlist">
-		                            	<button type="button" style="margin-left: 66%;" class="btn btn-default">Return</button>
+		                            	<button type="button" style="margin-left: 134%;" class="btn btn-default">Return</button>
 		                            </a>
                 			</th>
                 		</tr>
@@ -439,16 +438,12 @@ function like_func(){
 								<td class="replyid">
 									<span>${reply.user_id} </span>
 								</td>
-								<td class="replydate">
+								<td colspan="2" class="replydate">
 									<span>${reply.inputdate}</span>
 								</td>
 								<c:if test="${sessionScope.user_id == reply.user_id }">
-									<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-									<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-									<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-									<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									<td class="replybtn">
-										<input type="button" class="btn btn-outline-success" value="삭제" onclick="replyDelete('${reply.replynum}')" >
+										<input type="button" class="btn btn-outline-success" value="삭제" onclick="replyDelete('${reply.replynum}')">
 									</td>
 								</c:if>
 							</tr>
@@ -543,9 +538,9 @@ function like_func(){
                         </c:forEach>
                         <!-- 페이징 -->
 						<tr>
-							<td id="navigator" colspan="7">
-								<a href="javascript:pageProc(${navi.currentPage - navi.pagePerGroup}, '${searchItem}', '${searchKeyword}')">◁◁ </a> &nbsp;&nbsp;
-								<a href="javascript:pageProc(${navi.currentPage - 1}, '${searchItem}', '${searchKeyword}')">◀</a> &nbsp;&nbsp;
+							<td id="navigator" colspan="7" class="text-center">
+								<a href="javascript:pageProc(${navi.currentPage - navi.pagePerGroup}, '${searchItem}', '${searchKeyword}')"><span id="start-arrows"><i  class="bi bi-skip-start"></i></span></a> &nbsp;&nbsp;
+								<a href="javascript:pageProc(${navi.currentPage - 1}, '${searchItem}', '${searchKeyword}')"><span id="prev-arrows"><i class="bi bi-caret-left"></i></span></a> &nbsp;&nbsp;
 									
 								<c:forEach var="counter" begin="${navi.startPageGroup}" end="${navi.endPageGroup}"> 
 									<c:if test="${counter == navi.currentPage}"><b></c:if>
@@ -553,8 +548,8 @@ function like_func(){
 									<c:if test="${counter == navi.currentPage}"></b></c:if>
 								</c:forEach>
 								&nbsp;&nbsp;
-								<a href="javascript:pageProc(${navi.currentPage + 1}, '${searchItem}', '${searchKeyword}')">▶</a> &nbsp;&nbsp;
-								<a href="javascript:pageProc(${navi.currentPage + navi.pagePerGroup}, '${searchItem}', '${searchKeyword}')">▷▷</a>
+								<a href="javascript:pageProc(${navi.currentPage + 1}, '${searchItem}', '${searchKeyword}')"><span id="next-arrows"><i class="bi bi-caret-right"></i></span></a> &nbsp;&nbsp;
+								<a href="javascript:pageProc(${navi.currentPage + navi.pagePerGroup}, '${searchItem}', '${searchKeyword}')"><span id="end-arrows"><i class="bi bi-skip-end"></span></i></a>
 							</td>
 						</tr>
 						<!-- 페이징 -->
@@ -584,16 +579,44 @@ function like_func(){
     
     <!-- jQuery -->
     <script src="resources/vendor/jquery/jquery.min.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-
     <!-- Contact Form JavaScript -->
     <script src="resources/js/jqBootstrapValidation.js"></script>
     <script src="resources/js/contact_me.js"></script>
-
     <!-- Theme JavaScript -->
     <script src="resources/js/clean-blog.min.js"></script>
-    
+<script type="text/javascript">
+$(function() {
+	// 맨 앞으로 가기
+	$('#start-arrows').mouseover(function(){
+		$('#start-arrows').empty().removeClass('bi-skip-start').addClass('bi-skip-start-fill');
+	})
+	$('#start-arrows').mouseleave(function(){
+		$('#start-arrows').empty().removeClass('bi-skip-start-fill').addClass('bi-skip-start');
+	})
+	// 앞으로 가기
+	$('#prev-arrows').mouseover(function(){
+		$('#prev-arrows').empty().removeClass('bi-caret-left').addClass('bi-caret-left-fill');
+	})
+	$('#prev-arrows').mouseleave(function(){
+		$('#prev-arrows').empty().removeClass('bi-caret-left-fill').addClass('bi-caret-left');
+	})
+	// 뒤로 가기
+	$('#next-arrows').mouseover(function(){
+		$('#next-arrows').empty().removeClass('bi-caret-right').addClass('bi-caret-right-fill');
+	})
+	$('#next-arrows').mouseleave(function(){
+		$('#next-arrows').empty().removeClass('bi-caret-right-fill').addClass('bi-caret-right');
+	})
+	// 맨 뒤로 가기
+	$('#end-arrows').mouseover(function(){
+		$('#end-arrows').empty().removeClass('bi-skip-end').addClass('bi-skip-end-fill');
+	})
+	$('#end-arrows').mouseleave(function(){
+		$('#end-arrows').empty().removeClass('bi-skip-end-fill').addClass('bi-skip-end');
+	})
+})
+</script>
 </body>
 </html>

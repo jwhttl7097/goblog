@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>[블로그]</title>
+<title>GoBlog</title>
 <!-- Bootstrap Core CSS -->
 <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -29,6 +29,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <script src="resources/js/jquery-3.4.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 <link href="resources/css/bootstrap.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style type="text/css">
@@ -178,14 +179,13 @@ a.button:hover {
                 <ul class="pager">
             	<!-- 게시판 검색기능 -->
 					<form action="<c:url value='postlist'/>" method="get">
-						<select name="searchItem" style="height: 26.3px;">
+						<select name="searchItem" style="height: 32px;">
 							<option value="title" selected="selected">제목</option>
 							<option value="user_id">작성자</option>
 							<option value="content">내용</option>
 						</select>
-						<input type="text" name="searchKeyword" style="26.3px;">
-						<button type="submit">검색</button>
-						<button type="submit">게시글 이동</button>
+						<input type="text" name="searchKeyword" style="height: 32px;">
+						<button class="btn btn-primary" type="submit">검색</button>
 					</form>
 				<!-- 게시판 검색기능 -->
                 </ul>
@@ -200,9 +200,6 @@ a.button:hover {
     <c:forEach items="${requestScope.hitlist}" var="hitlist">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
-                <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
-                <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
                 	<table class="table">
                 		<tr>
                 			<th colspan="4">
@@ -380,14 +377,10 @@ a.button:hover {
 								<td class="replyid">
 									<span>${reply.user_id} </span>
 								</td>
-								<td class="replydate">
+								<td colspan="2" class="replydate">
 									<span>${reply.inputdate}</span>
 								</td>
 								<c:if test="${sessionScope.user_id == reply.user_id }">
-									<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-									<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-									<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-									<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 									<td class="replybtn">
 										<input type="button" class="btn btn-outline-success" value="삭제" onclick="replyDelete('${reply.replynum}')" >
 									</td>
@@ -425,14 +418,14 @@ a.button:hover {
 	
 	<!-- Theme JavaScript -->
 	<script src="resources/js/clean-blog.min.js"></script>
-    
-    <!-- 좋아요 로그인경고 -->
+
+<!-- 좋아요 로그인경고 -->
 <script type="text/javascript">
-	$(function(){
-	  $('.btn_like').click(function(){
-		  $('.btn_like').html("<a href='boardlogin' style='margin-left: 13px'>로그인</a>");
-	  });
-	});
+$(function(){
+  $('.btn_like').click(function(){
+	  $('.btn_like').html("<a href='boardlogin' style='margin-left: 13px'>로그인</a>");
+  });
+});
 </script>
 
 <!-- 댓글입력 로그인경고 -->
@@ -457,7 +450,7 @@ a.button:hover {
 <script type="text/javascript">
 	function replyDelete(replynum) {
 		if(confirm("댓글을 삭제하시겠습니까?")) {
-			location.href="<c:url value='hitReplyDelete?replynum="+ replynum +"&post_no=${vo.post_no}' />";
+			location.href="<c:url value='hitReplyDelete?replynum="+ replynum + "' />";
 		}
 	}
 </script>

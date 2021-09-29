@@ -97,12 +97,15 @@
 	        reportpost
 	    SET
 	        title = #{title},
-	        content = #{content},
 	        <choose>
 	        	<when test="originalFilename != null and savedFilename != null">
+			        content = #{content},
 	        		originalFilename = #{originalFilename},
 	        		savedFilename = #{savedFilename}
 	        	</when>
+	        	<otherwise>
+	        		content = #{content}
+	        	</otherwise>
 	        </choose>
 	    WHERE
 	        post_no = #{post_no} and user_id = #{user_id}
