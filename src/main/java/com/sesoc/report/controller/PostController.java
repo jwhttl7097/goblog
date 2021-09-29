@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sesoc.report.dao.PageNavigator;
 import com.sesoc.report.dao.PostListDAO;
 import com.sesoc.report.vo.LikeVO;
+import com.sesoc.report.vo.PageNavigator;
 import com.sesoc.report.vo.PostTagVO;
 import com.sesoc.report.vo.PostVO;
 import com.sesoc.report.vo.ReplyVO;

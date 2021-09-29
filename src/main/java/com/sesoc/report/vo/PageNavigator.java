@@ -1,4 +1,4 @@
-package com.sesoc.report.dao;
+package com.sesoc.report.vo;
 
 /**
  * 게시판 페이징 처리 클래스

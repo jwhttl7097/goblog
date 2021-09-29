@@ -120,7 +120,7 @@ a.button:hover {
                 		<c:when test="${sessionScope.user_id != null}">
 	                	<li>
 	                		<div style="margin-right: -25px;">
-		                		<h5 class="hfive">${sessionScope.user_id}님 환영합니다</h5>
+		                		<h5 class="hfive">${sessionScope.user_id}님 환영합니다&nbsp;</h5>
 	                		</div>
 	                	</li>
 	                	<li>
@@ -458,7 +458,7 @@ $(function(){
 <script type="text/javascript">
 /* 좋아요 */
 function like_func(){
-  var post_no = $('#post_no').val();
+  var post_no = $('#post_no').text();
   //var //user_id = $('#user_id', frm_read).val();
   //console.log("post_no, user_id : " + post_no +","+ user_id);
   
