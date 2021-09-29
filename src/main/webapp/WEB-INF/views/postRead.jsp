@@ -140,7 +140,7 @@ td.paging {
 <script type="text/javascript">
 /* 좋아요 */
 function like_func(){
-  var post_no = $('#post_no').val();
+  var post_no = $('#post_no').text();
   //var //user_id = $('#user_id', frm_read).val();
   //console.log("post_no, user_id : " + post_no +","+ user_id);
   
